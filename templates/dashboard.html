@@ -8,26 +8,6 @@
         overflow: hidden;
     }
 
-    * {
-        scrollbar-width: thin;
-        scrollbar-color: rgba(255,122,24,.65) rgba(255,255,255,.06);
-    }
-
-    *::-webkit-scrollbar {
-        width: 10px;
-        height: 10px;
-    }
-
-    *::-webkit-scrollbar-track {
-        background: rgba(255,255,255,.06);
-        border-radius: 999px;
-    }
-
-    *::-webkit-scrollbar-thumb {
-        background: linear-gradient(#ff005c,#ff7a18);
-        border-radius: 999px;
-    }
-
     .mouse-glow {
         position: fixed;
         inset: 0;
@@ -350,7 +330,6 @@
         gap: 18px;
         height: calc(100vh - 146px);
         min-height: 0;
-        overflow: hidden;
     }
 
     .board-area,
@@ -671,8 +650,6 @@
         flex-direction: column;
         gap: 16px;
         overflow-y: auto;
-        min-height: 0;
-        padding-bottom: 42px;
     }
 
     .panel-card {
@@ -681,7 +658,6 @@
         background: rgba(8,4,10,.55);
         padding: 18px;
         transition: .35s;
-        flex-shrink: 0;
     }
 
     .panel-card:hover {
@@ -932,11 +908,6 @@
         height: calc(100vh - 146px);
         padding: 22px;
         overflow-y: auto;
-        border-radius: 30px;
-        border: 1px solid rgba(255,255,255,.12);
-        background: rgba(255,255,255,.065);
-        backdrop-filter: blur(22px);
-        box-shadow: 0 30px 85px rgba(0,0,0,.24);
     }
 
     .grid-cards {
@@ -984,87 +955,8 @@
         justify-content: space-between;
         align-items: center;
         gap: 12px;
-        padding: 14px;
-        margin-bottom: 10px;
-        border: 1px solid rgba(255,255,255,.08);
-        border-radius: 18px;
-        background: rgba(255,255,255,.045);
-        transition: .28s ease;
-    }
-
-    .line-item:hover {
-        transform: translateY(-3px);
-        border-color: rgba(255,122,24,.30);
-        background: rgba(255,255,255,.075);
-    }
-
-    .line-item span {
-        min-width: 0;
-        overflow-wrap: anywhere;
-    }
-
-    .line-actions {
-        display: flex;
-        gap: 8px;
-        flex-shrink: 0;
-    }
-
-    .settings-grid {
-        display: grid;
-        grid-template-columns: 1.1fr .9fr;
-        gap: 18px;
-    }
-
-    .setting-row {
-        display: grid;
-        grid-template-columns: 1fr auto;
-        gap: 14px;
-        align-items: center;
-        padding: 16px;
-        border-radius: 20px;
-        border: 1px solid rgba(255,255,255,.09);
-        background: rgba(255,255,255,.045);
-        margin-bottom: 12px;
-    }
-
-    .setting-row strong {
-        display: block;
-        color: #fff;
-        margin-bottom: 4px;
-    }
-
-    .setting-row small {
-        color: rgba(255,255,255,.55);
-    }
-
-    .mapping-grid {
-        display: grid;
-        grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
-        gap: 14px;
-    }
-
-    .mapping-card {
-        padding: 16px;
-        border-radius: 22px;
-        border: 1px solid rgba(255,255,255,.10);
-        background: linear-gradient(145deg, rgba(255,255,255,.09), rgba(255,255,255,.035));
-    }
-
-    .mapping-card strong {
-        display: block;
-        color: #fff;
-        margin-bottom: 10px;
-    }
-
-    .mapping-card span {
-        display: inline-flex;
-        margin: 0 6px 6px 0;
-        padding: 6px 9px;
-        border-radius: 999px;
-        background: rgba(255,255,255,.08);
-        color: rgba(255,255,255,.70);
-        font-size: 11px;
-        font-weight: 800;
+        padding: 12px 0;
+        border-bottom: 1px solid rgba(255,255,255,.08);
     }
 
     @media(max-width: 1250px) {
@@ -1259,31 +1151,13 @@
         <section class="view" id="reportsView"><div class="page-card"><div class="grid-cards"><div class="metric-card"><strong id="totalCardsMetric">0</strong><span>demandas totais no Kanban.</span></div><div class="metric-card"><strong id="doingMetric">0</strong><span>demandas em andamento.</span></div><div class="metric-card"><strong id="doneMetric">0</strong><span>demandas concluídas.</span></div><div class="metric-card"><strong id="highMetric">0</strong><span>demandas de alta prioridade.</span></div></div><div class="content-grid"><div class="list-card"><h3>Resumo por etapa</h3><div id="reportColumns"></div></div><div class="list-card"><h3>Leitura executiva</h3><p>O relatório é atualizado automaticamente conforme os dados retornados pela API.</p></div></div></div></section>
         <section class="view" id="usersView"><div class="page-card"><div class="flex justify-between items-center mb-4"><h2 class="text-2xl font-bold">Colaboradores</h2><button class="btn" id="open-cadastro-usuario-modal-btn">+ Cadastrar Usuário</button></div><div id="users-container"></div></div></section>
         <section class="view" id="aiView"><div class="page-card"><div class="grid-cards"><div class="metric-card"><strong>87%</strong><span>melhor sugestão atual.</span></div><div class="metric-card"><strong id="aiMetric">0</strong><span>demandas com IA aplicada.</span></div><div class="metric-card"><strong>3</strong><span>critérios avaliados.</span></div><div class="metric-card"><strong>100%</strong><span>integrado ao fluxo de atribuição.</span></div></div><div class="content-grid"><div class="list-card"><h3>Critérios da IA</h3><div class="line-item"><span>Habilidade técnica</span><b>45%</b></div><div class="line-item"><span>Disponibilidade</span><b>30%</b></div><div class="line-item"><span>Histórico de execução</span><b>25%</b></div></div><div class="list-card"><h3>Últimas sugestões</h3><div id="aiList"></div></div></div></div></section>
-        <section class="view" id="settingsView">
-            <div class="page-card">
-                <div class="settings-grid">
-                    <div class="list-card">
-                        <h3>Configurações</h3>
-                        <div class="setting-row"><div><strong>Notificações</strong><small>Ativa/desativa alertas visuais do workspace.</small></div><button class="btn" id="toggleNotifications">Alternar</button></div>
-                        <div class="setting-row"><div><strong>Limpar busca e filtros</strong><small>Remove pesquisa, filtros por área e filtros rápidos.</small></div><button class="btn" id="clearAll">Limpar</button></div>
-                        <div class="setting-row"><div><strong>Recarregar dados</strong><small>Busca novamente projetos e usuários pela API.</small></div><button class="btn" id="reloadData">Recarregar</button></div>
-                        <div class="setting-row"><div><strong>Modo foco</strong><small>Oculta temporariamente o painel lateral de detalhes.</small></div><button class="btn" id="focusMode">Ativar</button></div>
-                    </div>
-                    <div class="list-card">
-                        <h3>Sobre</h3>
-                        <p>Workspace funcional conectado ao backend do Ruby Alignment. Use esta tela para controlar o ambiente, limpar filtros e revisar o mapeamento visual.</p>
-                    </div>
-                </div>
-            </div>
-        </section>
+        <section class="view" id="settingsView"><div class="page-card"><div class="content-grid"><div class="list-card"><h3>Configurações</h3><div class="line-item"><span>Notificações</span><button class="btn" id="toggleNotifications">Alternar</button></div><div class="line-item"><span>Limpar busca e filtros</span><button class="btn" id="clearAll">Limpar</button></div></div><div class="list-card"><h3>Sobre</h3><p>Workspace funcional conectado ao backend do Ruby Alignment.</p></div></div></div></section>
     </main>
 </div>
 {% endblock %}
 
 {% block scripts %}
 <script>
-'use strict';
-
 document.addEventListener('DOMContentLoaded', initializeApp);
 
 let currentUser = {};
@@ -1311,257 +1185,106 @@ const pageInfo = {
     settingsView: ['Configurações','Ajustes do ambiente funcional do sistema.']
 };
 
-function el(id) {
-    return document.getElementById(id);
-}
-
-function safeText(id, value) {
-    const element = el(id);
-    if (element) element.textContent = value;
-}
-
-function safeHtml(id, value) {
-    const element = el(id);
-    if (element) element.innerHTML = value;
-}
-
 function showToast(message, isError = false) {
-    const toast = el('toast');
-    if (!toast) return;
+    const toast = document.getElementById('toast');
     const item = document.createElement('div');
     item.className = 'toast-item';
-    item.style.borderColor = isError ? 'rgba(248,113,113,.38)' : 'rgba(255,255,255,.14)';
+    item.style.borderColor = isError ? 'rgba(248,113,113,.35)' : 'rgba(255,255,255,.14)';
     item.textContent = message;
     toast.appendChild(item);
     setTimeout(() => item.remove(), 3500);
 }
 
-function openModal(id) {
-    const modal = el(id);
-    if (modal) modal.classList.add('open');
-}
-
-function closeModal(id) {
-    const modal = el(id);
-    if (modal) modal.classList.remove('open');
-}
-
-function handleLogout() {
-    window.location.href = '/logout';
-}
+function openModal(id) { document.getElementById(id).classList.add('open'); }
+function closeModal(id) { document.getElementById(id).classList.remove('open'); }
+function handleLogout() { window.location.href = '/logout'; }
 
 function getColumn(project) {
-    const status = String(project.status_nome || '').toUpperCase();
-    if (status.includes('CONCLU')) return 'done';
-    if (status.includes('ANDAMENTO')) return 'doing';
+    if (project.status_nome === 'CONCLUÍDO') return 'done';
+    if (project.status_nome === 'EM ANDAMENTO') return 'doing';
     return 'backlog';
 }
 
 function projectArea(project) {
     const text = `${project.titulo || ''} ${project.descricao || ''}`.toLowerCase();
     if (text.includes('ia') || text.includes('inteligência') || text.includes('machine')) return 'ia';
-    if (text.includes('front') || text.includes('layout') || text.includes('tela') || text.includes('html') || text.includes('css')) return 'frontend';
+    if (text.includes('front') || text.includes('layout') || text.includes('tela')) return 'frontend';
     return 'backend';
 }
 
 function filteredProjects() {
-    return allProjects.filter(project => {
-        const text = `${project.idDemandas || ''} ${project.titulo || ''} ${project.descricao || ''} ${project.urgencia || ''} ${project.solicitante_nome || ''} ${project.colaborador_nome || ''}`.toLowerCase();
+    return allProjects.filter(p => {
+        const text = `${p.idDemandas} ${p.titulo || ''} ${p.descricao || ''} ${p.urgencia || ''} ${p.solicitante_nome || ''} ${p.colaborador_nome || ''}`.toLowerCase();
         const matchesSearch = !searchTerm || text.includes(searchTerm.toLowerCase());
-        const area = projectArea(project);
+        const area = projectArea(p);
         const matchesBoard = boardFilter === 'all' || area === boardFilter;
         const matchesChip = !chipFilter ||
-            (chipFilter === 'alta' && ['Alta','Urgente'].includes(project.urgencia)) ||
+            (chipFilter === 'alta' && ['Alta','Urgente'].includes(p.urgencia)) ||
             (chipFilter === 'ia' && area === 'ia') ||
-            (chipFilter === 'meus' && project.colaborador_nome && String(project.colaborador_nome).includes(currentUser.user_name || '')) ||
+            (chipFilter === 'meus' && p.colaborador_nome && p.colaborador_nome.includes(currentUser.user_name)) ||
             (chipFilter === 'semana');
         return matchesSearch && matchesBoard && matchesChip;
     });
 }
 
 function renderBoard() {
-    const board = el('kanbanBoard');
-    if (!board) return;
-
+    const board = document.getElementById('kanbanBoard');
     const visible = filteredProjects();
-
-    board.innerHTML = columns.map(column => {
-        const list = visible.filter(project => getColumn(project) === column.id);
-        const width = Math.min(100, Math.max(25, list.length * 25));
-        return `
-            <section class="column">
-                <div class="column-head">
-                    <div class="column-title">
-                        <h3><span class="dot ${column.dot}"></span>${column.title}</h3>
-                        <span class="count">${list.length}</span>
-                    </div>
-                    <div class="column-metric"><span style="width:${width}%"></span></div>
-                </div>
-                <div class="task-list">
-                    ${list.length ? list.map(createKanbanCard).join('') : '<div class="empty-state">Nenhuma demanda encontrada aqui.</div>'}
-                    <button class="add-card" type="button" data-action="new-project">+ Adicionar card</button>
-                </div>
-            </section>
-        `;
+    board.innerHTML = columns.map(col => {
+        const list = visible.filter(p => getColumn(p) === col.id);
+        return `<section class="column"><div class="column-head"><div class="column-title"><h3><span class="dot ${col.dot}"></span>${col.title}</h3><span class="count">${list.length}</span></div><div class="column-metric"><span style="width:${Math.min(100, Math.max(25, list.length * 25))}%"></span></div></div><div class="task-list">${list.length ? list.map(createKanbanCard).join('') : '<div class="empty-state">Nenhuma demanda encontrada aqui.</div>'}<button class="add-card" onclick="openCadastroProjetoModal()">+ Adicionar card</button></div></section>`;
     }).join('');
 
     document.querySelectorAll('.task-card').forEach(card => {
         card.addEventListener('click', () => {
             selectedProjectId = card.dataset.projectId;
             renderDetails();
-            document.querySelectorAll('.task-card').forEach(item => item.classList.remove('selected'));
+            document.querySelectorAll('.task-card').forEach(c => c.classList.remove('selected'));
             card.classList.add('selected');
         });
-    });
-
-    document.querySelectorAll('[data-action="new-project"]').forEach(button => {
-        button.addEventListener('click', openCadastroProjetoModal);
     });
 }
 
 function createKanbanCard(project) {
-    const selected = String(selectedProjectId) === String(project.idDemandas) ? 'selected' : '';
+    const selected = selectedProjectId == project.idDemandas ? 'selected' : '';
     const priorityClass = ['Alta','Urgente'].includes(project.urgencia) ? 'hot' : project.urgencia === 'Média' ? 'warn' : '';
-    const initials = String(project.colaborador_nome || project.solicitante_nome || 'RA')
-        .split(' ')
-        .filter(Boolean)
-        .map(part => part[0])
-        .join('')
-        .slice(0, 2)
-        .toUpperCase();
-
-    return `
-        <article class="task-card ${selected}" data-project-id="${project.idDemandas}">
-            <div class="task-top">
-                <span class="task-id">RA-${project.idDemandas}</span>
-                <span class="status-live">ativo</span>
-            </div>
-            <h4>${project.titulo || 'Sem título'}</h4>
-            <p>${project.descricao || 'Sem descrição.'}</p>
-            <div class="task-meta">
-                <span class="pill ${priorityClass}">${project.urgencia || 'Média'}</span>
-                <span class="pill">${projectArea(project).toUpperCase()}</span>
-            </div>
-            <div class="task-footer">
-                <div class="member">${initials}</div>
-                <span class="due">${project.dataAbertura || 'Hoje'}</span>
-            </div>
-        </article>
-    `;
+    const initials = (project.colaborador_nome || project.solicitante_nome || 'RA').split(' ').map(x => x[0]).join('').slice(0,2).toUpperCase();
+    return `<article class="task-card ${selected}" data-project-id="${project.idDemandas}"><div class="task-top"><span class="task-id">RA-${project.idDemandas}</span><span class="status-live">ativo</span></div><h4>${project.titulo}</h4><p>${project.descricao || 'Sem descrição.'}</p><div class="task-meta"><span class="pill ${priorityClass}">${project.urgencia || 'Média'}</span><span class="pill">${projectArea(project).toUpperCase()}</span></div><div class="task-footer"><div class="member">${initials}</div><span class="due">${project.dataAbertura || 'Hoje'}</span></div></article>`;
 }
 
 function renderDetails() {
-    const panel = el('detailsPanel');
-    if (!panel) return;
-
-    const project = allProjects.find(item => String(item.idDemandas) === String(selectedProjectId)) || allProjects[0];
-
+    const panel = document.getElementById('detailsPanel');
+    const project = allProjects.find(p => p.idDemandas == selectedProjectId) || allProjects[0];
     if (!project) {
         panel.innerHTML = '<section class="panel-card"><p>Nenhuma demanda selecionada.</p></section>';
         return;
     }
-
     selectedProjectId = project.idDemandas;
     const canManage = currentUser.user_role === 'ADMINISTRADOR' || currentUser.user_role === 'SOLICITANTE';
-
-    panel.innerHTML = `
-        <section class="panel-card selected-task">
-            <div class="selected-content">
-                <div class="panel-title">
-                    <h3>Demanda selecionada</h3>
-                    <button class="mini-action" type="button" data-action="open-status" data-id="${project.idDemandas}">↗</button>
-                </div>
-                <h2>${project.titulo || 'Sem título'}</h2>
-                <p>${project.descricao || 'Sem descrição.'}</p>
-                <div class="task-meta">
-                    <span class="pill hot">${project.urgencia || 'Média'}</span>
-                    <span class="pill">${projectArea(project).toUpperCase()}</span>
-                    <span class="pill">${project.status_nome || 'NÃO INICIADO'}</span>
-                </div>
-            </div>
-        </section>
-
-        <section class="panel-card">
-            <div class="panel-title"><h3>Sugestão automática</h3><button class="mini-action" type="button">🤖</button></div>
-            <div class="suggestion"><div class="score">87%</div><div><strong>${project.colaborador_nome || 'Aguardando atribuição'}</strong><span>Maior aderência estimada com base nas habilidades do projeto.</span></div></div>
-            <div class="suggestion"><div class="score">74%</div><div><strong>Equipe Ruby</strong><span>Boa aderência em organização visual e execução.</span></div></div>
-        </section>
-
-        <section class="panel-card">
-            <div class="panel-title"><h3>Ações rápidas</h3><button class="mini-action" type="button">⋯</button></div>
-            <div class="activity">
-                ${project.status_nome === 'NÃO INICIADO'
-                    ? `<button class="btn" type="button" data-action="open-adhesion" data-id="${project.idDemandas}">Atribuir e iniciar</button>`
-                    : `<button class="btn" type="button" data-action="open-status" data-id="${project.idDemandas}">Atualizar andamento</button>`}
-                ${canManage ? `
-                    <button class="btn" type="button" data-action="edit-project" data-id="${project.idDemandas}">Editar demanda</button>
-                    <button class="btn" type="button" data-action="delete-project" data-id="${project.idDemandas}">Excluir demanda</button>
-                ` : ''}
-            </div>
-        </section>
-
-        <section class="panel-card">
-            <div class="panel-title"><h3>Atividade recente</h3><button class="mini-action" type="button">⋯</button></div>
-            <div class="activity">
-                <div class="suggestion"><div class="member">RA</div><div><strong>Status atual</strong><span>${project.status_nome || '-'}</span></div></div>
-                <div class="suggestion"><div class="member">AI</div><div><strong>Mapeamento</strong><span>${projectArea(project).toUpperCase()} · ${project.urgencia || 'Média'}</span></div></div>
-                <div class="suggestion"><div class="member">DT</div><div><strong>Criado em</strong><span>${project.dataAbertura || '-'}</span></div></div>
-            </div>
-        </section>
-    `;
-
-    bindDetailsActions();
-}
-
-function bindDetailsActions() {
-    document.querySelectorAll('[data-action="open-status"]').forEach(button => {
-        button.addEventListener('click', () => openAndamentoModalById(button.dataset.id));
-    });
-
-    document.querySelectorAll('[data-action="open-adhesion"]').forEach(button => {
-        button.addEventListener('click', () => openAdesaoModalById(button.dataset.id));
-    });
-
-    document.querySelectorAll('[data-action="edit-project"]').forEach(button => {
-        button.addEventListener('click', () => openEditProjectModalById(button.dataset.id));
-    });
-
-    document.querySelectorAll('[data-action="delete-project"]').forEach(button => {
-        button.addEventListener('click', () => {
-            const project = allProjects.find(item => String(item.idDemandas) === String(button.dataset.id));
-            deleteProject(button.dataset.id, project ? project.titulo : 'demanda');
-        });
-    });
+    panel.innerHTML = `<section class="panel-card selected-task"><div class="selected-content"><div class="panel-title"><h3>Demanda selecionada</h3><button class="mini-action" onclick="openAndamentoModalById('${project.idDemandas}')">↗</button></div><h2>${project.titulo}</h2><p>${project.descricao || 'Sem descrição.'}</p><div class="task-meta"><span class="pill hot">${project.urgencia || 'Média'}</span><span class="pill">${projectArea(project).toUpperCase()}</span><span class="pill">${project.status_nome}</span></div></div></section><section class="panel-card"><div class="panel-title"><h3>Sugestão automática</h3><button class="mini-action">🤖</button></div><div class="suggestion"><div class="score">87%</div><div><strong>${project.colaborador_nome || 'Aguardando atribuição'}</strong><span>Maior aderência estimada com base nas habilidades do projeto.</span></div></div><div class="suggestion"><div class="score">74%</div><div><strong>Equipe Ruby</strong><span>Boa aderência em organização visual e execução.</span></div></div></section><section class="panel-card"><div class="panel-title"><h3>Ações rápidas</h3><button class="mini-action">⋯</button></div><div class="activity">${project.status_nome === 'NÃO INICIADO' ? `<button class="btn" onclick="openAdesaoModalById('${project.idDemandas}')">Atribuir e iniciar</button>` : `<button class="btn" onclick="openAndamentoModalById('${project.idDemandas}')">Atualizar andamento</button>`}${canManage ? `<button class="btn" onclick="openEditProjectModalById('${project.idDemandas}')">Editar demanda</button><button class="btn" onclick="deleteProject('${project.idDemandas}', '${String(project.titulo).replace(/'/g,'')}')">Excluir demanda</button>` : ''}</div></section><section class="panel-card"><div class="panel-title"><h3>Atividade recente</h3><button class="mini-action">⋯</button></div><div class="activity"><div class="suggestion"><div class="member">RA</div><div><strong>Status atual</strong><span>${project.status_nome}</span></div></div></div></section>`;
 }
 
 function renderPages() {
-    const myProjects = allProjects.filter(project => project.colaborador_nome && String(project.colaborador_nome).includes(currentUser.user_name || ''));
-
-    safeText('totalCardsMetric', allProjects.length);
-    safeText('totalProjectsMetric', allProjects.length);
-    safeText('doingMetric', allProjects.filter(project => getColumn(project) === 'doing').length);
-    safeText('doneMetric', allProjects.filter(project => getColumn(project) === 'done').length);
-    safeText('highMetric', allProjects.filter(project => ['Alta','Urgente'].includes(project.urgencia)).length);
-    safeText('highMetricMini', allProjects.filter(project => ['Alta','Urgente'].includes(project.urgencia)).length);
-    safeText('todayMetric', allProjects.filter(project => project.dataAbertura).length);
-    safeText('notStartedMetric', allProjects.filter(project => getColumn(project) === 'backlog').length);
-    safeText('progressMetric', allProjects.filter(project => getColumn(project) === 'doing').length);
-    safeText('completedMetric', allProjects.filter(project => getColumn(project) === 'done').length);
-    safeText('aiMetric', allProjects.filter(project => projectArea(project) === 'ia').length);
-    safeText('myTaskCount', myProjects.length);
-
-    safeHtml('reportColumns', columns.map(column => `<div class="line-item"><span>${column.title}</span><b>${allProjects.filter(project => getColumn(project) === column.id).length}</b></div>`).join(''));
-    safeHtml('projectsList', allProjects.slice(0, 6).map(project => `<div class="line-item"><span>${project.titulo}</span><b>${project.status_nome}</b></div>`).join('') || '<p>Nenhum projeto.</p>');
-    safeHtml('myTasksList', myProjects.map(project => `<div class="line-item"><span>${project.titulo}</span><b>${project.urgencia || 'Média'}</b></div>`).join('') || '<p>Nenhuma tarefa atribuída.</p>');
-    safeHtml('nextDeliveries', allProjects.slice(0, 5).map(project => `<div class="line-item"><span>${project.titulo}</span><b>${project.dataLimite || project.dataAbertura || '-'}</b></div>`).join('');
-    safeHtml('aiList', allProjects.filter(project => projectArea(project) === 'ia').map(project => `<div class="line-item"><span>${project.titulo}</span><b>87%</b></div>`).join('') || '<p>Nenhuma sugestão ativa.</p>');
+    document.getElementById('totalCardsMetric').textContent = allProjects.length;
+    document.getElementById('totalProjectsMetric').textContent = allProjects.length;
+    document.getElementById('doingMetric').textContent = allProjects.filter(p => p.status_nome === 'EM ANDAMENTO').length;
+    document.getElementById('doneMetric').textContent = allProjects.filter(p => p.status_nome === 'CONCLUÍDO').length;
+    document.getElementById('highMetric').textContent = allProjects.filter(p => ['Alta','Urgente'].includes(p.urgencia)).length;
+    document.getElementById('highMetricMini').textContent = allProjects.filter(p => ['Alta','Urgente'].includes(p.urgencia)).length;
+    document.getElementById('todayMetric').textContent = allProjects.filter(p => p.dataAbertura).length;
+    document.getElementById('notStartedMetric').textContent = allProjects.filter(p => p.status_nome === 'NÃO INICIADO').length;
+    document.getElementById('progressMetric').textContent = allProjects.filter(p => p.status_nome === 'EM ANDAMENTO').length;
+    document.getElementById('completedMetric').textContent = allProjects.filter(p => p.status_nome === 'CONCLUÍDO').length;
+    document.getElementById('aiMetric').textContent = allProjects.filter(p => projectArea(p) === 'ia').length;
+    document.getElementById('myTaskCount').textContent = allProjects.filter(p => p.colaborador_nome && p.colaborador_nome.includes(currentUser.user_name)).length;
+    document.getElementById('reportColumns').innerHTML = columns.map(c => `<div class="line-item"><span>${c.title}</span><b>${allProjects.filter(p => getColumn(p) === c.id).length}</b></div>`).join('');
+    document.getElementById('projectsList').innerHTML = allProjects.slice(0,6).map(p => `<div class="line-item"><span>${p.titulo}</span><b>${p.status_nome}</b></div>`).join('') || '<p>Nenhum projeto.</p>';
+    document.getElementById('myTasksList').innerHTML = allProjects.filter(p => p.colaborador_nome && p.colaborador_nome.includes(currentUser.user_name)).map(p => `<div class="line-item"><span>${p.titulo}</span><b>${p.urgencia || 'Média'}</b></div>`).join('') || '<p>Nenhuma tarefa atribuída.</p>';
+    document.getElementById('nextDeliveries').innerHTML = allProjects.slice(0,5).map(p => `<div class="line-item"><span>${p.titulo}</span><b>${p.dataLimite || p.dataAbertura || '-'}</b></div>`).join('');
+    document.getElementById('aiList').innerHTML = allProjects.filter(p => projectArea(p) === 'ia').map(p => `<div class="line-item"><span>${p.titulo}</span><b>87%</b></div>`).join('') || '<p>Nenhuma sugestão ativa.</p>';
 }
 
-function renderAll() {
-    renderBoard();
-    renderDetails();
-    renderPages();
-}
+function renderAll() { renderBoard(); renderDetails(); renderPages(); }
 
 async function loadData(endpoint, successCallback, errorCallback) {
     try {
@@ -1576,392 +1299,114 @@ async function loadData(endpoint, successCallback, errorCallback) {
 }
 
 function loadProjects() {
-    loadData('/api/projects', data => {
-        allProjects = data;
-        if (!selectedProjectId && allProjects[0]) selectedProjectId = allProjects[0].idDemandas;
-        renderAll();
-    });
+    loadData('/api/projects', data => { allProjects = data; if (!selectedProjectId && allProjects[0]) selectedProjectId = allProjects[0].idDemandas; renderAll(); }, () => {});
 }
 
 function loadUsers() {
-    loadData('/api/users', data => {
-        allUsers = data;
-        renderUsers();
-    });
+    loadData('/api/users', data => { allUsers = data; renderUsers(); }, () => {});
 }
 
 function renderUsers() {
-    const container = el('users-container');
-    if (!container) return;
-
-    container.innerHTML = allUsers.map(user => `
-        <div class="line-item">
-            <span>
-                <strong style="color:#fff">${user.nome_completo} (${user.nome})</strong><br>
-                <small>${user.email || ''}</small><br>
-                <small>${user.perfil || ''}</small>
-            </span>
-            <span class="line-actions">
-                <button class="btn-edit-user mini-action" type="button" data-user-id="${user.idADM}" title="Editar">✎</button>
-                <button class="btn-delete-user mini-action" type="button" data-user-id="${user.idADM}" data-user-name="${user.nome_completo}" title="Excluir">🗑</button>
-            </span>
-        </div>
-    `).join('') || '<p>Nenhum usuário cadastrado.</p>';
-
-    document.querySelectorAll('.btn-edit-user').forEach(button => button.addEventListener('click', openEditUserModal));
-    document.querySelectorAll('.btn-delete-user').forEach(button => button.addEventListener('click', event => deleteUser(event.currentTarget.dataset.userId, event.currentTarget.dataset.userName)));
+    const container = document.getElementById('users-container');
+    container.innerHTML = allUsers.map(user => `<div class="line-item"><span>${user.nome_completo} (${user.nome})<br><small>${user.email}</small></span><span><button class="btn-edit-user mini-action" data-user-id="${user.idADM}">✎</button><button class="btn-delete-user mini-action" data-user-id="${user.idADM}" data-user-name="${user.nome_completo}">🗑</button></span></div>`).join('') || '<p>Nenhum usuário cadastrado.</p>';
+    document.querySelectorAll('.btn-edit-user').forEach(btn => btn.addEventListener('click', openEditUserModal));
+    document.querySelectorAll('.btn-delete-user').forEach(btn => btn.addEventListener('click', e => deleteUser(e.currentTarget.dataset.userId, e.currentTarget.dataset.userName)));
 }
 
 async function handleApiFormSubmit(url, method, formData, modalId, successCallback) {
     try {
-        const response = await fetch(url, {
-            method,
-            headers: { 'Content-Type': 'application/json' },
-            body: formData ? JSON.stringify(formData) : null
-        });
+        const response = await fetch(url, { method, headers: { 'Content-Type': 'application/json' }, body: formData ? JSON.stringify(formData) : null });
         const result = await response.json();
         if (!response.ok) throw new Error(result.error || 'Ação falhou.');
         showToast(result.message || 'Ação realizada com sucesso.');
         if (modalId) closeModal(modalId);
         if (successCallback) successCallback();
-    } catch (error) {
-        showToast(error.message, true);
-    }
+    } catch (error) { showToast(error.message, true); }
 }
 
 function handleProjectFormSubmit(event) {
     event.preventDefault();
-    const form = el('cadastro-projeto-form');
+    const form = document.getElementById('cadastro-projeto-form');
     const editingId = form.dataset.editingId;
-    const checkedSkills = Array.from(document.querySelectorAll('#project-skills-checkboxes input:checked')).map(input => input.value).join(', ');
-    const desc = el('descricao').value;
-    const fullDesc = checkedSkills ? `${desc}
-
-Habilidades Desejadas: ${checkedSkills}` : desc;
-
-    const formData = {
-        titulo: el('titulo').value,
-        descricao: fullDesc,
-        objetivo: el('objetivo').value,
-        dataLimite: el('dataLimite').value,
-        supervisor_responsavel: el('supervisor_responsavel').value
-    };
-
-    if (editingId) {
-        handleApiFormSubmit(`/api/projects/${editingId}`, 'PUT', formData, 'project-modal', () => {
-            delete form.dataset.editingId;
-            loadProjects();
-        });
-    } else {
-        handleApiFormSubmit('/api/projects', 'POST', formData, 'project-modal', loadProjects);
-    }
+    const skillsCheckboxes = document.querySelectorAll('#project-skills-checkboxes input:checked');
+    const selectedSkills = Array.from(skillsCheckboxes).map(cb => cb.value).join(', ');
+    const descricao = document.getElementById('descricao').value;
+    const descricaoFinal = selectedSkills ? `${descricao}\n\nHabilidades Desejadas: ${selectedSkills}` : descricao;
+    const formData = { titulo: titulo.value, descricao: descricaoFinal, objetivo: objetivo.value, dataLimite: dataLimite.value, supervisor_responsavel: supervisor_responsavel.value };
+    if (editingId) handleApiFormSubmit(`/api/projects/${editingId}`, 'PUT', formData, 'project-modal', () => { delete form.dataset.editingId; loadProjects(); });
+    else handleApiFormSubmit('/api/projects', 'POST', formData, 'project-modal', loadProjects);
 }
 
 function handleUserFormSubmit(event) {
     event.preventDefault();
-    const userId = el('user-id').value;
-    const skills = Array.from(document.querySelectorAll('#user-skills-checkboxes input:checked')).map(input => input.value);
-    const formData = {
-        nome_login: el('nome_login').value,
-        nome_completo: el('nome_completo').value,
-        personal_email: el('personal_email').value,
-        phone: el('phone').value,
-        admission_date: el('admission_date').value,
-        role: el('new-user-role').value,
-        skills
-    };
+    const userId = document.getElementById('user-id').value;
+    const skills = Array.from(document.querySelectorAll('#user-skills-checkboxes input:checked')).map(cb => cb.value);
+    const formData = { nome_login: nome_login.value, nome_completo: nome_completo.value, personal_email: personal_email.value, phone: phone.value, admission_date: admission_date.value, role: document.getElementById('new-user-role').value, skills };
     handleApiFormSubmit(userId ? `/api/users/${userId}` : '/api/users', userId ? 'PUT' : 'POST', formData, 'users-modal', loadUsers);
 }
 
-function handleUrgencyFormSubmit(event) {
-    event.preventDefault();
-    const projectId = el('urgencia-project-id').value;
-    handleApiFormSubmit(`/api/projects/${projectId}/urgency`, 'PUT', { urgencia: el('urgencia-select').value }, 'urgencia-modal', loadProjects);
-}
+function handleUrgencyFormSubmit(event) { event.preventDefault(); handleApiFormSubmit(`/api/projects/${urgencia_project_id.value}/urgency`, 'PUT', { urgencia: document.getElementById('urgencia-select').value }, 'urgencia-modal', loadProjects); }
+function handleAdesaoFormSubmit(event) { event.preventDefault(); const integrantes = [estagiario_responsavel.value]; document.querySelectorAll('.additional-collaborator-select').forEach(s => { if(s.value) integrantes.push(s.value); }); handleApiFormSubmit(`/api/projects/${adesao_project_id.value}/adhere`, 'POST', { integrantes:[...new Set(integrantes)].filter(Boolean), inicio_projeto: inicio_projeto.value, previsao_termino: previsao_termino.value }, 'adesao-modal', loadProjects); }
+function handleAndamentoFormSubmit(event) { event.preventDefault(); handleApiFormSubmit(`/api/projects/${andamento_project_id.value}/status`, 'PUT', { reuniao_requisitos: reuniao_requisitos.value, coleta_preparacao_dados: coleta_preparacao_dados.value, criacao_relatorio_dashboard: criacao_relatorio_dashboard.value, validacao_refinamento: validacao_refinamento.value, documentacao: documentacao.value, status_geral: status_geral.value, dataConclusao: dataConclusao.value, observacao: observacao.value }, 'andamento-modal', loadProjects); }
 
-function handleAdesaoFormSubmit(event) {
-    event.preventDefault();
-    const projectId = el('adesao-project-id').value;
-    const integrantes = [el('estagiario_responsavel').value];
-    document.querySelectorAll('.additional-collaborator-select').forEach(select => {
-        if (select.value) integrantes.push(select.value);
-    });
-    const formData = {
-        integrantes: [...new Set(integrantes)].filter(Boolean),
-        inicio_projeto: el('inicio_projeto').value,
-        previsao_termino: el('previsao_termino').value
-    };
-    handleApiFormSubmit(`/api/projects/${projectId}/adhere`, 'POST', formData, 'adesao-modal', loadProjects);
-}
+function deleteProject(id, name) { if (!confirm(`Excluir projeto "${name}"?`)) return; handleApiFormSubmit(`/api/projects/${id}`, 'DELETE', null, null, loadProjects); }
+function deleteUser(id, name) { if (!confirm(`Excluir usuário "${name}"?`)) return; handleApiFormSubmit(`/api/users/${id}`, 'DELETE', null, null, loadUsers); }
 
-function handleAndamentoFormSubmit(event) {
-    event.preventDefault();
-    const projectId = el('andamento-project-id').value;
-    const formData = {
-        reuniao_requisitos: el('reuniao_requisitos').value,
-        coleta_preparacao_dados: el('coleta_preparacao_dados').value,
-        criacao_relatorio_dashboard: el('criacao_relatorio_dashboard').value,
-        validacao_refinamento: el('validacao_refinamento').value,
-        documentacao: el('documentacao').value,
-        status_geral: el('status_geral').value,
-        dataConclusao: el('dataConclusao').value,
-        observacao: el('observacao').value
-    };
-    handleApiFormSubmit(`/api/projects/${projectId}/status`, 'PUT', formData, 'andamento-modal', loadProjects);
-}
-
-function deleteProject(id, name) {
-    if (!confirm(`Excluir projeto "${name}"?`)) return;
-    handleApiFormSubmit(`/api/projects/${id}`, 'DELETE', null, null, loadProjects);
-}
-
-function deleteUser(id, name) {
-    if (!confirm(`Excluir usuário "${name}"?`)) return;
-    handleApiFormSubmit(`/api/users/${id}`, 'DELETE', null, null, loadUsers);
-}
-
-function openCadastroProjetoModal() {
-    const form = el('cadastro-projeto-form');
-    if (form) {
-        form.reset();
-        delete form.dataset.editingId;
-    }
-    safeText('project-modal-title', 'Nova demanda');
-    openModal('project-modal');
-}
-
-function openEditProjectModalById(id) {
-    const project = allProjects.find(item => String(item.idDemandas) === String(id));
-    if (!project) return;
-    const form = el('cadastro-projeto-form');
-    if (form) {
-        form.reset();
-        form.dataset.editingId = id;
-    }
-    el('titulo').value = project.titulo || '';
-    el('descricao').value = String(project.descricao || '').replace(/
-
-Habilidades Desejadas:.*/is, '');
-    el('objetivo').value = project.objetivo || '';
-    el('supervisor_responsavel').value = project.supervisor_responsavel || '';
-    safeText('project-modal-title', 'Editar demanda');
-    openModal('project-modal');
-}
-
-function openAdesaoModalById(id) {
-    const project = allProjects.find(item => String(item.idDemandas) === String(id));
-    if (!project) return;
-    const form = el('adesao-form');
-    if (form) form.reset();
-    safeHtml('additional-collaborators-container', '');
-    el('adesao-project-id').value = id;
-    el('adesao-project-name').value = project.titulo || '';
-    openModal('adesao-modal');
-    fetchAdherence(id);
-}
-
-function openAndamentoModalById(id) {
-    const project = allProjects.find(item => String(item.idDemandas) === String(id));
-    if (!project) return;
-    const form = el('andamento-form');
-    if (form) form.reset();
-    el('andamento-project-id').value = id;
-    el('andamento-project-name').value = project.titulo || '';
-    openModal('andamento-modal');
-}
+function openCadastroProjetoModal() { const form = document.getElementById('cadastro-projeto-form'); form.reset(); delete form.dataset.editingId; document.getElementById('project-modal-title').textContent = 'Nova demanda'; openModal('project-modal'); }
+function openEditProjectModalById(id) { const p = allProjects.find(x => x.idDemandas == id); if (!p) return; const form = document.getElementById('cadastro-projeto-form'); form.reset(); titulo.value = p.titulo || ''; descricao.value = (p.descricao || '').replace(/\n\nHabilidades Desejadas:.*/is, ''); objetivo.value = p.objetivo || ''; supervisor_responsavel.value = p.supervisor_responsavel || ''; form.dataset.editingId = id; document.getElementById('project-modal-title').textContent = 'Editar demanda'; openModal('project-modal'); }
+function openAdesaoModalById(id) { const p = allProjects.find(x => x.idDemandas == id); if (!p) return; adesao_form_reset(); adesao_project_id.value = id; adesao_project_name.value = p.titulo; openModal('adesao-modal'); fetchAdherence(id); }
+function openAndamentoModalById(id) { const p = allProjects.find(x => x.idDemandas == id); if (!p) return; document.getElementById('andamento-form').reset(); andamento_project_id.value = id; andamento_project_name.value = p.titulo; openModal('andamento-modal'); }
+function adesao_form_reset(){ document.getElementById('adesao-form').reset(); document.getElementById('additional-collaborators-container').innerHTML = ''; }
 
 async function fetchAdherence(id) {
-    const select = el('estagiario_responsavel');
-    if (!select) return;
+    const select = document.getElementById('estagiario_responsavel');
     select.innerHTML = '<option>Buscando sugestões...</option>';
     try {
-        const [suggestionsResponse, usersResponse] = await Promise.all([
-            fetch(`/api/project/${id}/adherence`),
-            fetch('/api/users')
-        ]);
-        const suggestions = await suggestionsResponse.json();
-        const usersResult = await usersResponse.json();
+        const [suggestionsRes, usersRes] = await Promise.all([fetch(`/api/project/${id}/adherence`), fetch('/api/users')]);
+        const suggestions = await suggestionsRes.json();
+        const usersResult = await usersRes.json();
         allUsers = usersResult.data || [];
-        select.innerHTML = suggestions && suggestions.length
-            ? '<option value="">-- Selecione --</option>' + suggestions.map(item => `<option value="${item.nome}">${item.nome} (${item.aderencia}% de aderência)</option>`).join('')
-            : '<option value="">Nenhum colaborador compatível</option>';
-    } catch (error) {
-        select.innerHTML = '<option value="">Erro ao carregar</option>';
-    }
+        select.innerHTML = suggestions.length ? '<option value="">-- Selecione --</option>' + suggestions.map(s => `<option value="${s.nome}">${s.nome} (${s.aderencia}% de aderência)</option>`).join('') : '<option value="">Nenhum colaborador compatível</option>';
+    } catch(e) { select.innerHTML = '<option value="">Erro ao carregar</option>'; }
 }
 
 async function openEditUserModal(event) {
     const userId = event.currentTarget.dataset.userId;
-    const form = el('users-form');
-    if (form) form.reset();
+    document.getElementById('users-form').reset();
     openModal('users-modal');
     try {
         const response = await fetch(`/api/users/${userId}`);
         const result = await response.json();
-        if (!response.ok) throw new Error(result.error || 'Erro ao carregar usuário.');
+        if(!response.ok) throw new Error(result.error);
         const user = result.data;
-        el('user-id').value = user.idADM || '';
-        el('nome_login').value = user.nome_login || '';
-        el('nome_completo').value = user.nome_completo || '';
-        el('personal_email').value = user.corporate_email || user.email || '';
-        el('phone').value = user.telefone || '';
-        el('admission_date').value = user.dataAdmissao || '';
-        el('new-user-role').value = user.perfil ? user.perfil.charAt(0).toUpperCase() + user.perfil.slice(1).toLowerCase() : 'Solicitante';
-    } catch (error) {
-        showToast(error.message, true);
-        closeModal('users-modal');
-    }
+        document.getElementById('user-id').value = user.idADM;
+        nome_login.value = user.nome_login;
+        nome_completo.value = user.nome_completo;
+        personal_email.value = user.corporate_email;
+        phone.value = user.telefone;
+        admission_date.value = user.dataAdmissao;
+        document.getElementById('new-user-role').value = user.perfil.charAt(0).toUpperCase() + user.perfil.slice(1).toLowerCase();
+    } catch(e) { showToast(e.message, true); closeModal('users-modal'); }
 }
 
 function addCollaboratorField() {
-    const container = el('additional-collaborators-container');
-    if (!container) return;
-    const wrapper = document.createElement('div');
-    wrapper.style.marginTop = '10px';
-    wrapper.innerHTML = `<select class="field additional-collaborator-select"><option value="">-- Selecione um co-responsável --</option>${allUsers.map(user => `<option value="${user.nome_completo}">${user.nome_completo}</option>`).join('')}</select>`;
-    container.appendChild(wrapper);
+    const container = document.getElementById('additional-collaborators-container');
+    const div = document.createElement('div');
+    div.innerHTML = `<select class="field additional-collaborator-select"><option value="">-- Selecione um co-responsável --</option>${allUsers.map(u => `<option value="${u.nome_completo}">${u.nome_completo}</option>`).join('')}</select>`;
+    container.appendChild(div);
 }
 
 function populateSkillsCheckboxes(containerId) {
     const skills = ['Frontend','Backend','Banco de Dados SQL','NoSQL','API REST','Mobile','Testes QA','DevOps','Cloud AWS','Cloud Azure','Análise de Dados','Machine Learning','BI','Power BI','Python','JavaScript','Java','C#','.NET','React','Angular','Vue.js','UI/UX Design','Design Gráfico','Gestão de Projetos','Marketing Digital','SEO','Análise de Requisitos','Suporte Técnico'];
-    const container = el(containerId);
-    if (!container) return;
-    container.innerHTML = skills.map(skill => `
-        <label class="skill-chip">
-            <input type="checkbox" value="${skill}">
-            <span>${skill}</span>
-        </label>
-    `).join('');
-}
-
-function bindStaticEvents() {
-    const logoutButton = el('logout-button');
-    if (logoutButton) logoutButton.addEventListener('click', handleLogout);
-
-    const newProjectButton = el('open-cadastro-projeto-modal-btn');
-    if (newProjectButton) newProjectButton.addEventListener('click', openCadastroProjetoModal);
-
-    const projectForm = el('cadastro-projeto-form');
-    if (projectForm) projectForm.addEventListener('submit', handleProjectFormSubmit);
-
-    const userForm = el('users-form');
-    if (userForm) userForm.addEventListener('submit', handleUserFormSubmit);
-
-    const urgencyForm = el('urgencia-form');
-    if (urgencyForm) urgencyForm.addEventListener('submit', handleUrgencyFormSubmit);
-
-    const adhesionForm = el('adesao-form');
-    if (adhesionForm) adhesionForm.addEventListener('submit', handleAdesaoFormSubmit);
-
-    const statusForm = el('andamento-form');
-    if (statusForm) statusForm.addEventListener('submit', handleAndamentoFormSubmit);
-
-    const addCollaboratorButton = el('add-collaborator-btn');
-    if (addCollaboratorButton) addCollaboratorButton.addEventListener('click', addCollaboratorField);
-
-    const globalSearch = el('globalSearch');
-    if (globalSearch) {
-        globalSearch.addEventListener('input', event => {
-            searchTerm = event.target.value;
-            renderAll();
-        });
+    const container = document.getElementById(containerId);
+    if (container) {
+        container.innerHTML = skills.map(skill => `
+            <label class="skill-chip">
+                <input type="checkbox" value="${skill}">
+                <span>${skill}</span>
+            </label>
+        `).join('');
     }
-
-    const notificationButton = el('notificationBtn');
-    if (notificationButton) {
-        notificationButton.addEventListener('click', () => {
-            notificationButton.classList.toggle('has-alert');
-            showToast('Notificações visualizadas.');
-        });
-    }
-
-    const toggleNotifications = el('toggleNotifications');
-    if (toggleNotifications) {
-        toggleNotifications.addEventListener('click', () => {
-            if (notificationButton) notificationButton.classList.toggle('has-alert');
-            showToast('Preferência de notificações alterada.');
-        });
-    }
-
-    const reloadData = el('reloadData');
-    if (reloadData) {
-        reloadData.addEventListener('click', () => {
-            loadProjects();
-            loadUsers();
-            showToast('Dados recarregados pela API.');
-        });
-    }
-
-    const focusMode = el('focusMode');
-    if (focusMode) {
-        focusMode.addEventListener('click', () => {
-            const workspace = document.querySelector('.workspace');
-            const panel = document.querySelector('.details-panel');
-            if (!workspace || !panel) return;
-            const hidden = panel.style.display === 'none';
-            panel.style.display = hidden ? 'flex' : 'none';
-            workspace.style.gridTemplateColumns = hidden ? 'minmax(0, 1fr) 390px' : '1fr';
-            showToast('Modo foco alternado.');
-        });
-    }
-
-    const clearAll = el('clearAll');
-    if (clearAll) {
-        clearAll.addEventListener('click', () => {
-            searchTerm = '';
-            boardFilter = 'all';
-            chipFilter = '';
-            if (globalSearch) globalSearch.value = '';
-            document.querySelectorAll('.chip,.workspace-tab').forEach(item => item.classList.remove('active'));
-            const allTab = document.querySelector('[data-board-filter="all"]');
-            if (allTab) allTab.classList.add('active');
-            renderAll();
-            showToast('Busca e filtros limpos.');
-        });
-    }
-
-    document.querySelectorAll('[data-view-target]').forEach(button => {
-        button.addEventListener('click', () => {
-            const id = button.dataset.viewTarget;
-            document.querySelectorAll('.view').forEach(view => view.classList.remove('active'));
-            const target = el(id);
-            if (target) target.classList.add('active');
-            document.querySelectorAll('.nav-item').forEach(item => item.classList.remove('active'));
-            if (button.classList.contains('nav-item')) button.classList.add('active');
-            if (pageInfo[id]) {
-                safeText('pageTitle', pageInfo[id][0]);
-                safeText('pageSubtitle', pageInfo[id][1]);
-            }
-            if (id === 'usersView') loadUsers();
-            renderPages();
-        });
-    });
-
-    document.querySelectorAll('[data-board-filter]').forEach(tab => {
-        tab.addEventListener('click', () => {
-            document.querySelectorAll('[data-board-filter]').forEach(item => item.classList.remove('active'));
-            tab.classList.add('active');
-            boardFilter = tab.dataset.boardFilter;
-            renderAll();
-        });
-    });
-
-    document.querySelectorAll('[data-chip-filter]').forEach(chip => {
-        chip.addEventListener('click', () => {
-            const same = chipFilter === chip.dataset.chipFilter;
-            document.querySelectorAll('[data-chip-filter]').forEach(item => item.classList.remove('active'));
-            chipFilter = same ? '' : chip.dataset.chipFilter;
-            if (!same) chip.classList.add('active');
-            renderAll();
-        });
-    });
-
-    window.addEventListener('mousemove', event => {
-        const glow = el('mouseGlow');
-        if (!glow) return;
-        glow.style.setProperty('--mx', `${event.clientX}px`);
-        glow.style.setProperty('--my', `${event.clientY}px`);
-    });
 }
 
 async function initializeApp() {
@@ -1969,27 +1414,47 @@ async function initializeApp() {
         const response = await fetch('/api/session');
         if (!response.ok) throw new Error('Sessão inválida.');
         currentUser = await response.json();
-        safeText('user-display', `${currentUser.user_name} (${currentUser.user_role})`);
-        const avatar = el('user-avatar');
-        if (avatar) avatar.textContent = String(currentUser.user_name || 'RA').split(' ').map(part => part[0]).join('').slice(0,2).toUpperCase();
-
-        if (currentUser.user_role !== 'ADMINISTRADOR') {
-            const usersButton = el('nav-users-btn');
-            if (usersButton) usersButton.style.display = 'none';
-        }
-        if (currentUser.user_role !== 'ADMINISTRADOR' && currentUser.user_role !== 'SOLICITANTE') {
-            const createButton = el('open-cadastro-projeto-modal-btn');
-            if (createButton) createButton.style.display = 'none';
-        }
-    } catch (error) {
-        window.location.href = '/login';
-        return;
-    }
+        document.getElementById('user-display').textContent = `${currentUser.user_name} (${currentUser.user_role})`;
+        document.getElementById('user-avatar').textContent = currentUser.user_name.split(' ').map(x => x[0]).join('').slice(0,2).toUpperCase();
+        if(currentUser.user_role !== 'ADMINISTRADOR') document.getElementById('nav-users-btn').style.display = 'none';
+        if(currentUser.user_role !== 'ADMINISTRADOR' && currentUser.user_role !== 'SOLICITANTE') document.getElementById('open-cadastro-projeto-modal-btn').style.display = 'none';
+    } catch(e) { window.location.href = '/login'; return; }
 
     populateSkillsCheckboxes('user-skills-checkboxes');
     populateSkillsCheckboxes('project-skills-checkboxes');
-    bindStaticEvents();
+    setupEvents();
     loadProjects();
+}
+
+function setupEvents() {
+    document.getElementById('logout-button').addEventListener('click', handleLogout);
+    document.getElementById('open-cadastro-projeto-modal-btn').addEventListener('click', openCadastroProjetoModal);
+    document.getElementById('cadastro-projeto-form').addEventListener('submit', handleProjectFormSubmit);
+    document.getElementById('users-form').addEventListener('submit', handleUserFormSubmit);
+    document.getElementById('urgencia-form').addEventListener('submit', handleUrgencyFormSubmit);
+    document.getElementById('adesao-form').addEventListener('submit', handleAdesaoFormSubmit);
+    document.getElementById('andamento-form').addEventListener('submit', handleAndamentoFormSubmit);
+    document.getElementById('add-collaborator-btn').addEventListener('click', addCollaboratorField);
+    document.getElementById('globalSearch').addEventListener('input', e => { searchTerm = e.target.value; renderAll(); });
+    document.getElementById('notificationBtn').addEventListener('click', () => { notificationBtn.classList.toggle('has-alert'); showToast('Notificações visualizadas.'); });
+    document.getElementById('toggleNotifications').addEventListener('click', () => showToast('Preferência alterada.'));
+    document.getElementById('clearAll').addEventListener('click', () => { searchTerm=''; boardFilter='all'; chipFilter=''; globalSearch.value=''; document.querySelectorAll('.chip,.workspace-tab').forEach(x=>x.classList.remove('active')); document.querySelector('[data-board-filter="all"]').classList.add('active'); renderAll(); });
+
+    document.querySelectorAll('[data-view-target]').forEach(btn => btn.addEventListener('click', () => {
+        const id = btn.dataset.viewTarget;
+        document.querySelectorAll('.view').forEach(v => v.classList.remove('active'));
+        document.getElementById(id).classList.add('active');
+        document.querySelectorAll('.nav-item').forEach(n => n.classList.remove('active'));
+        if (btn.classList.contains('nav-item')) btn.classList.add('active');
+        pageTitle.textContent = pageInfo[id][0];
+        pageSubtitle.textContent = pageInfo[id][1];
+        if (id === 'usersView') loadUsers();
+        renderPages();
+    }));
+
+    document.querySelectorAll('[data-board-filter]').forEach(tab => tab.addEventListener('click', () => { document.querySelectorAll('[data-board-filter]').forEach(t=>t.classList.remove('active')); tab.classList.add('active'); boardFilter = tab.dataset.boardFilter; renderAll(); }));
+    document.querySelectorAll('[data-chip-filter]').forEach(chip => chip.addEventListener('click', () => { const same = chipFilter === chip.dataset.chipFilter; document.querySelectorAll('[data-chip-filter]').forEach(c=>c.classList.remove('active')); chipFilter = same ? '' : chip.dataset.chipFilter; if(!same) chip.classList.add('active'); renderAll(); }));
+    window.addEventListener('mousemove', e => { mouseGlow.style.setProperty('--mx', `${e.clientX}px`); mouseGlow.style.setProperty('--my', `${e.clientY}px`); });
 }
 </script>
 {% endblock %}
