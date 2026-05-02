@@ -782,7 +782,7 @@
     }
 
     .field,
-    input,
+    input:not([type="checkbox"]),
     select,
     textarea {
         min-height: 52px;
@@ -793,9 +793,83 @@
         color: #fff !important;
         outline: none !important;
         width: 100%;
+        transition: .28s ease;
+    }
+
+    input:not([type="checkbox"]):focus,
+    select:focus,
+    textarea:focus {
+        border-color: rgba(255,122,24,.45) !important;
+        box-shadow: 0 0 0 5px rgba(255,0,92,.08);
     }
 
     textarea.field { min-height: 120px; grid-column: 1 / -1; resize: vertical; }
+
+    .skills-area {
+        grid-column: 1 / -1;
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(145px, 1fr));
+        gap: 10px;
+        max-height: 230px;
+        overflow-y: auto;
+        padding: 14px;
+        border-radius: 22px;
+        border: 1px solid rgba(255,255,255,.10);
+        background: rgba(255,255,255,.045);
+    }
+
+    .skill-chip {
+        position: relative;
+        min-height: 44px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        gap: 8px;
+        padding: 10px 12px;
+        border-radius: 15px;
+        border: 1px solid rgba(255,255,255,.11);
+        background: rgba(255,255,255,.06);
+        color: rgba(255,255,255,.72);
+        font-size: 12px;
+        font-weight: 800;
+        transition: .28s ease;
+        user-select: none;
+    }
+
+    .skill-chip input[type="checkbox"] {
+        position: absolute;
+        opacity: 0;
+        pointer-events: none;
+    }
+
+    .skill-chip::before {
+        content: "";
+        width: 9px;
+        height: 9px;
+        border-radius: 50%;
+        background: rgba(255,255,255,.22);
+        box-shadow: 0 0 0 3px rgba(255,255,255,.04);
+        transition: .28s ease;
+    }
+
+    .skill-chip:hover {
+        color: #fff;
+        transform: translateY(-3px);
+        border-color: rgba(255,122,24,.38);
+        background: rgba(255,255,255,.09);
+    }
+
+    .skill-chip:has(input:checked) {
+        color: #fff;
+        border-color: rgba(255,122,24,.60);
+        background: linear-gradient(135deg, rgba(255,0,92,.32), rgba(255,122,24,.20));
+        box-shadow: 0 12px 30px rgba(255,0,92,.12);
+    }
+
+    .skill-chip:has(input:checked)::before {
+        background: #ff7a18;
+        box-shadow: 0 0 16px rgba(255,122,24,.8);
+    }
     option { color: #111827; }
 
     .modal-actions {
@@ -913,7 +987,10 @@
                 <input class="field" id="supervisor_responsavel" name="supervisor_responsavel" placeholder="Supervisor responsável">
                 <input class="field" id="objetivo" name="objetivo" placeholder="Objetivo">
                 <textarea class="field" id="descricao" name="descricao" placeholder="Descrição detalhada" required></textarea>
-                <div id="project-skills-checkboxes" style="grid-column:1/-1" class="grid grid-cols-2 gap-2 text-sm text-white/70"></div>
+                <div style="grid-column:1/-1">
+                    <p class="text-sm font-bold text-white/75 mb-2">Habilidades desejadas</p>
+                    <div id="project-skills-checkboxes" class="skills-area"></div>
+                </div>
             </div>
             <div class="modal-actions">
                 <button type="button" class="btn" onclick="closeModal('project-modal')">Cancelar</button>
@@ -942,7 +1019,10 @@
                     <option value="Colaborador">Colaborador</option>
                     <option value="Administrador">Administrador</option>
                 </select>
-                <div id="user-skills-checkboxes" style="grid-column:1/-1" class="grid grid-cols-2 gap-2 text-sm text-white/70"></div>
+                <div style="grid-column:1/-1">
+                    <p class="text-sm font-bold text-white/75 mb-2">Habilidades do usuário</p>
+                    <div id="user-skills-checkboxes" class="skills-area"></div>
+                </div>
             </div>
             <div class="modal-actions">
                 <button type="button" class="btn" onclick="closeModal('users-modal')">Cancelar</button>
@@ -1319,7 +1399,14 @@ function addCollaboratorField() {
 function populateSkillsCheckboxes(containerId) {
     const skills = ['Frontend','Backend','Banco de Dados SQL','NoSQL','API REST','Mobile','Testes QA','DevOps','Cloud AWS','Cloud Azure','Análise de Dados','Machine Learning','BI','Power BI','Python','JavaScript','Java','C#','.NET','React','Angular','Vue.js','UI/UX Design','Design Gráfico','Gestão de Projetos','Marketing Digital','SEO','Análise de Requisitos','Suporte Técnico'];
     const container = document.getElementById(containerId);
-    if (container) container.innerHTML = skills.map(skill => `<label class="flex items-center gap-2"><input type="checkbox" value="${skill}"><span>${skill}</span></label>`).join('');
+    if (container) {
+        container.innerHTML = skills.map(skill => `
+            <label class="skill-chip">
+                <input type="checkbox" value="${skill}">
+                <span>${skill}</span>
+            </label>
+        `).join('');
+    }
 }
 
 async function initializeApp() {
