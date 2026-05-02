@@ -8,6 +8,26 @@
         overflow: hidden;
     }
 
+    * {
+        scrollbar-width: thin;
+        scrollbar-color: rgba(255,122,24,.65) rgba(255,255,255,.06);
+    }
+
+    *::-webkit-scrollbar {
+        width: 10px;
+        height: 10px;
+    }
+
+    *::-webkit-scrollbar-track {
+        background: rgba(255,255,255,.06);
+        border-radius: 999px;
+    }
+
+    *::-webkit-scrollbar-thumb {
+        background: linear-gradient(#ff005c,#ff7a18);
+        border-radius: 999px;
+    }
+
     .mouse-glow {
         position: fixed;
         inset: 0;
@@ -330,6 +350,7 @@
         gap: 18px;
         height: calc(100vh - 146px);
         min-height: 0;
+        overflow: hidden;
     }
 
     .board-area,
@@ -650,6 +671,8 @@
         flex-direction: column;
         gap: 16px;
         overflow-y: auto;
+        min-height: 0;
+        padding-bottom: 42px;
     }
 
     .panel-card {
@@ -658,6 +681,7 @@
         background: rgba(8,4,10,.55);
         padding: 18px;
         transition: .35s;
+        flex-shrink: 0;
     }
 
     .panel-card:hover {
@@ -908,6 +932,11 @@
         height: calc(100vh - 146px);
         padding: 22px;
         overflow-y: auto;
+        border-radius: 30px;
+        border: 1px solid rgba(255,255,255,.12);
+        background: rgba(255,255,255,.065);
+        backdrop-filter: blur(22px);
+        box-shadow: 0 30px 85px rgba(0,0,0,.24);
     }
 
     .grid-cards {
@@ -955,8 +984,87 @@
         justify-content: space-between;
         align-items: center;
         gap: 12px;
-        padding: 12px 0;
-        border-bottom: 1px solid rgba(255,255,255,.08);
+        padding: 14px;
+        margin-bottom: 10px;
+        border: 1px solid rgba(255,255,255,.08);
+        border-radius: 18px;
+        background: rgba(255,255,255,.045);
+        transition: .28s ease;
+    }
+
+    .line-item:hover {
+        transform: translateY(-3px);
+        border-color: rgba(255,122,24,.30);
+        background: rgba(255,255,255,.075);
+    }
+
+    .line-item span {
+        min-width: 0;
+        overflow-wrap: anywhere;
+    }
+
+    .line-actions {
+        display: flex;
+        gap: 8px;
+        flex-shrink: 0;
+    }
+
+    .settings-grid {
+        display: grid;
+        grid-template-columns: 1.1fr .9fr;
+        gap: 18px;
+    }
+
+    .setting-row {
+        display: grid;
+        grid-template-columns: 1fr auto;
+        gap: 14px;
+        align-items: center;
+        padding: 16px;
+        border-radius: 20px;
+        border: 1px solid rgba(255,255,255,.09);
+        background: rgba(255,255,255,.045);
+        margin-bottom: 12px;
+    }
+
+    .setting-row strong {
+        display: block;
+        color: #fff;
+        margin-bottom: 4px;
+    }
+
+    .setting-row small {
+        color: rgba(255,255,255,.55);
+    }
+
+    .mapping-grid {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+        gap: 14px;
+    }
+
+    .mapping-card {
+        padding: 16px;
+        border-radius: 22px;
+        border: 1px solid rgba(255,255,255,.10);
+        background: linear-gradient(145deg, rgba(255,255,255,.09), rgba(255,255,255,.035));
+    }
+
+    .mapping-card strong {
+        display: block;
+        color: #fff;
+        margin-bottom: 10px;
+    }
+
+    .mapping-card span {
+        display: inline-flex;
+        margin: 0 6px 6px 0;
+        padding: 6px 9px;
+        border-radius: 999px;
+        background: rgba(255,255,255,.08);
+        color: rgba(255,255,255,.70);
+        font-size: 11px;
+        font-weight: 800;
     }
 
     @media(max-width: 1250px) {
@@ -1151,7 +1259,23 @@
         <section class="view" id="reportsView"><div class="page-card"><div class="grid-cards"><div class="metric-card"><strong id="totalCardsMetric">0</strong><span>demandas totais no Kanban.</span></div><div class="metric-card"><strong id="doingMetric">0</strong><span>demandas em andamento.</span></div><div class="metric-card"><strong id="doneMetric">0</strong><span>demandas concluídas.</span></div><div class="metric-card"><strong id="highMetric">0</strong><span>demandas de alta prioridade.</span></div></div><div class="content-grid"><div class="list-card"><h3>Resumo por etapa</h3><div id="reportColumns"></div></div><div class="list-card"><h3>Leitura executiva</h3><p>O relatório é atualizado automaticamente conforme os dados retornados pela API.</p></div></div></div></section>
         <section class="view" id="usersView"><div class="page-card"><div class="flex justify-between items-center mb-4"><h2 class="text-2xl font-bold">Colaboradores</h2><button class="btn" id="open-cadastro-usuario-modal-btn">+ Cadastrar Usuário</button></div><div id="users-container"></div></div></section>
         <section class="view" id="aiView"><div class="page-card"><div class="grid-cards"><div class="metric-card"><strong>87%</strong><span>melhor sugestão atual.</span></div><div class="metric-card"><strong id="aiMetric">0</strong><span>demandas com IA aplicada.</span></div><div class="metric-card"><strong>3</strong><span>critérios avaliados.</span></div><div class="metric-card"><strong>100%</strong><span>integrado ao fluxo de atribuição.</span></div></div><div class="content-grid"><div class="list-card"><h3>Critérios da IA</h3><div class="line-item"><span>Habilidade técnica</span><b>45%</b></div><div class="line-item"><span>Disponibilidade</span><b>30%</b></div><div class="line-item"><span>Histórico de execução</span><b>25%</b></div></div><div class="list-card"><h3>Últimas sugestões</h3><div id="aiList"></div></div></div></div></section>
-        <section class="view" id="settingsView"><div class="page-card"><div class="content-grid"><div class="list-card"><h3>Configurações</h3><div class="line-item"><span>Notificações</span><button class="btn" id="toggleNotifications">Alternar</button></div><div class="line-item"><span>Limpar busca e filtros</span><button class="btn" id="clearAll">Limpar</button></div></div><div class="list-card"><h3>Sobre</h3><p>Workspace funcional conectado ao backend do Ruby Alignment.</p></div></div></div></section>
+        <section class="view" id="settingsView">
+            <div class="page-card">
+                <div class="settings-grid">
+                    <div class="list-card">
+                        <h3>Configurações</h3>
+                        <div class="setting-row"><div><strong>Notificações</strong><small>Ativa/desativa alertas visuais do workspace.</small></div><button class="btn" id="toggleNotifications">Alternar</button></div>
+                        <div class="setting-row"><div><strong>Limpar busca e filtros</strong><small>Remove pesquisa, filtros por área e filtros rápidos.</small></div><button class="btn" id="clearAll">Limpar</button></div>
+                        <div class="setting-row"><div><strong>Recarregar dados</strong><small>Busca novamente projetos e usuários pela API.</small></div><button class="btn" id="reloadData">Recarregar</button></div>
+                        <div class="setting-row"><div><strong>Modo foco</strong><small>Oculta temporariamente o painel lateral de detalhes.</small></div><button class="btn" id="focusMode">Ativar</button></div>
+                    </div>
+                    <div class="list-card">
+                        <h3>Sobre</h3>
+                        <p>Workspace funcional conectado ao backend do Ruby Alignment. Use esta tela para controlar o ambiente, limpar filtros e revisar o mapeamento visual.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
     </main>
 </div>
 {% endblock %}
@@ -1261,7 +1385,36 @@ function renderDetails() {
     }
     selectedProjectId = project.idDemandas;
     const canManage = currentUser.user_role === 'ADMINISTRADOR' || currentUser.user_role === 'SOLICITANTE';
-    panel.innerHTML = `<section class="panel-card selected-task"><div class="selected-content"><div class="panel-title"><h3>Demanda selecionada</h3><button class="mini-action" onclick="openAndamentoModalById('${project.idDemandas}')">↗</button></div><h2>${project.titulo}</h2><p>${project.descricao || 'Sem descrição.'}</p><div class="task-meta"><span class="pill hot">${project.urgencia || 'Média'}</span><span class="pill">${projectArea(project).toUpperCase()}</span><span class="pill">${project.status_nome}</span></div></div></section><section class="panel-card"><div class="panel-title"><h3>Sugestão automática</h3><button class="mini-action">🤖</button></div><div class="suggestion"><div class="score">87%</div><div><strong>${project.colaborador_nome || 'Aguardando atribuição'}</strong><span>Maior aderência estimada com base nas habilidades do projeto.</span></div></div><div class="suggestion"><div class="score">74%</div><div><strong>Equipe Ruby</strong><span>Boa aderência em organização visual e execução.</span></div></div></section><section class="panel-card"><div class="panel-title"><h3>Ações rápidas</h3><button class="mini-action">⋯</button></div><div class="activity">${project.status_nome === 'NÃO INICIADO' ? `<button class="btn" onclick="openAdesaoModalById('${project.idDemandas}')">Atribuir e iniciar</button>` : `<button class="btn" onclick="openAndamentoModalById('${project.idDemandas}')">Atualizar andamento</button>`}${canManage ? `<button class="btn" onclick="openEditProjectModalById('${project.idDemandas}')">Editar demanda</button><button class="btn" onclick="deleteProject('${project.idDemandas}', '${String(project.titulo).replace(/'/g,'')}')">Excluir demanda</button>` : ''}</div></section><section class="panel-card"><div class="panel-title"><h3>Atividade recente</h3><button class="mini-action">⋯</button></div><div class="activity"><div class="suggestion"><div class="member">RA</div><div><strong>Status atual</strong><span>${project.status_nome}</span></div></div></div></section>`;
+    const safeTitle = String(project.titulo || '').replace(/'/g, "\\'");
+    panel.innerHTML = `
+        <section class="panel-card selected-task">
+            <div class="selected-content">
+                <div class="panel-title"><h3>Demanda selecionada</h3><button class="mini-action" onclick="openAndamentoModalById('${project.idDemandas}')">↗</button></div>
+                <h2>${project.titulo}</h2>
+                <p>${project.descricao || 'Sem descrição.'}</p>
+                <div class="task-meta"><span class="pill hot">${project.urgencia || 'Média'}</span><span class="pill">${projectArea(project).toUpperCase()}</span><span class="pill">${project.status_nome}</span></div>
+            </div>
+        </section>
+        <section class="panel-card">
+            <div class="panel-title"><h3>Sugestão automática</h3><button class="mini-action">🤖</button></div>
+            <div class="suggestion"><div class="score">87%</div><div><strong>${project.colaborador_nome || 'Aguardando atribuição'}</strong><span>Maior aderência estimada com base nas habilidades do projeto.</span></div></div>
+            <div class="suggestion"><div class="score">74%</div><div><strong>Equipe Ruby</strong><span>Boa aderência em organização visual e execução.</span></div></div>
+        </section>
+        <section class="panel-card">
+            <div class="panel-title"><h3>Ações rápidas</h3><button class="mini-action">⋯</button></div>
+            <div class="activity">
+                ${project.status_nome === 'NÃO INICIADO' ? `<button class="btn" onclick="openAdesaoModalById('${project.idDemandas}')">Atribuir e iniciar</button>` : `<button class="btn" onclick="openAndamentoModalById('${project.idDemandas}')">Atualizar andamento</button>`}
+                ${canManage ? `<button class="btn" onclick="openEditProjectModalById('${project.idDemandas}')">Editar demanda</button><button class="btn" onclick="deleteProject('${project.idDemandas}', '${safeTitle}')">Excluir demanda</button>` : ''}
+            </div>
+        </section>
+        <section class="panel-card">
+            <div class="panel-title"><h3>Atividade recente</h3><button class="mini-action">⋯</button></div>
+            <div class="activity">
+                <div class="suggestion"><div class="member">RA</div><div><strong>Status atual</strong><span>${project.status_nome}</span></div></div>
+                <div class="suggestion"><div class="member">AI</div><div><strong>Mapeamento</strong><span>${projectArea(project).toUpperCase()} · ${project.urgencia || 'Média'}</span></div></div>
+                <div class="suggestion"><div class="member">DT</div><div><strong>Criado em</strong><span>${project.dataAbertura || '-'}</span></div></div>
+            </div>
+        </section>`;
 }
 
 function renderPages() {
@@ -1308,7 +1461,19 @@ function loadUsers() {
 
 function renderUsers() {
     const container = document.getElementById('users-container');
-    container.innerHTML = allUsers.map(user => `<div class="line-item"><span>${user.nome_completo} (${user.nome})<br><small>${user.email}</small></span><span><button class="btn-edit-user mini-action" data-user-id="${user.idADM}">✎</button><button class="btn-delete-user mini-action" data-user-id="${user.idADM}" data-user-name="${user.nome_completo}">🗑</button></span></div>`).join('') || '<p>Nenhum usuário cadastrado.</p>';
+    container.innerHTML = allUsers.map(user => `
+        <div class="line-item">
+            <span>
+                <strong style="color:#fff">${user.nome_completo} (${user.nome})</strong><br>
+                <small>${user.email}</small><br>
+                <small>${user.perfil || ''}</small>
+            </span>
+            <span class="line-actions">
+                <button class="btn-edit-user mini-action" data-user-id="${user.idADM}" title="Editar">✎</button>
+                <button class="btn-delete-user mini-action" data-user-id="${user.idADM}" data-user-name="${user.nome_completo}" title="Excluir">🗑</button>
+            </span>
+        </div>
+    `).join('') || '<p>Nenhum usuário cadastrado.</p>';
     document.querySelectorAll('.btn-edit-user').forEach(btn => btn.addEventListener('click', openEditUserModal));
     document.querySelectorAll('.btn-delete-user').forEach(btn => btn.addEventListener('click', e => deleteUser(e.currentTarget.dataset.userId, e.currentTarget.dataset.userName)));
 }
@@ -1345,17 +1510,61 @@ function handleUserFormSubmit(event) {
     handleApiFormSubmit(userId ? `/api/users/${userId}` : '/api/users', userId ? 'PUT' : 'POST', formData, 'users-modal', loadUsers);
 }
 
-function handleUrgencyFormSubmit(event) { event.preventDefault(); handleApiFormSubmit(`/api/projects/${urgencia_project_id.value}/urgency`, 'PUT', { urgencia: document.getElementById('urgencia-select').value }, 'urgencia-modal', loadProjects); }
-function handleAdesaoFormSubmit(event) { event.preventDefault(); const integrantes = [estagiario_responsavel.value]; document.querySelectorAll('.additional-collaborator-select').forEach(s => { if(s.value) integrantes.push(s.value); }); handleApiFormSubmit(`/api/projects/${adesao_project_id.value}/adhere`, 'POST', { integrantes:[...new Set(integrantes)].filter(Boolean), inicio_projeto: inicio_projeto.value, previsao_termino: previsao_termino.value }, 'adesao-modal', loadProjects); }
-function handleAndamentoFormSubmit(event) { event.preventDefault(); handleApiFormSubmit(`/api/projects/${andamento_project_id.value}/status`, 'PUT', { reuniao_requisitos: reuniao_requisitos.value, coleta_preparacao_dados: coleta_preparacao_dados.value, criacao_relatorio_dashboard: criacao_relatorio_dashboard.value, validacao_refinamento: validacao_refinamento.value, documentacao: documentacao.value, status_geral: status_geral.value, dataConclusao: dataConclusao.value, observacao: observacao.value }, 'andamento-modal', loadProjects); }
+function handleUrgencyFormSubmit(event) {
+    event.preventDefault();
+    const projectId = document.getElementById('urgencia-project-id').value;
+    handleApiFormSubmit(`/api/projects/${projectId}/urgency`, 'PUT', { urgencia: document.getElementById('urgencia-select').value }, 'urgencia-modal', loadProjects);
+}
+function handleAdesaoFormSubmit(event) {
+    event.preventDefault();
+    const projectId = document.getElementById('adesao-project-id').value;
+    const integrantes = [document.getElementById('estagiario_responsavel').value];
+    document.querySelectorAll('.additional-collaborator-select').forEach(s => { if(s.value) integrantes.push(s.value); });
+    const formData = {
+        integrantes: [...new Set(integrantes)].filter(Boolean),
+        inicio_projeto: document.getElementById('inicio_projeto').value,
+        previsao_termino: document.getElementById('previsao_termino').value
+    };
+    handleApiFormSubmit(`/api/projects/${projectId}/adhere`, 'POST', formData, 'adesao-modal', loadProjects);
+}
+function handleAndamentoFormSubmit(event) {
+    event.preventDefault();
+    const projectId = document.getElementById('andamento-project-id').value;
+    const formData = {
+        reuniao_requisitos: document.getElementById('reuniao_requisitos').value,
+        coleta_preparacao_dados: document.getElementById('coleta_preparacao_dados').value,
+        criacao_relatorio_dashboard: document.getElementById('criacao_relatorio_dashboard').value,
+        validacao_refinamento: document.getElementById('validacao_refinamento').value,
+        documentacao: document.getElementById('documentacao').value,
+        status_geral: document.getElementById('status_geral').value,
+        dataConclusao: document.getElementById('dataConclusao').value,
+        observacao: document.getElementById('observacao').value
+    };
+    handleApiFormSubmit(`/api/projects/${projectId}/status`, 'PUT', formData, 'andamento-modal', loadProjects);
+}
 
 function deleteProject(id, name) { if (!confirm(`Excluir projeto "${name}"?`)) return; handleApiFormSubmit(`/api/projects/${id}`, 'DELETE', null, null, loadProjects); }
 function deleteUser(id, name) { if (!confirm(`Excluir usuário "${name}"?`)) return; handleApiFormSubmit(`/api/users/${id}`, 'DELETE', null, null, loadUsers); }
 
 function openCadastroProjetoModal() { const form = document.getElementById('cadastro-projeto-form'); form.reset(); delete form.dataset.editingId; document.getElementById('project-modal-title').textContent = 'Nova demanda'; openModal('project-modal'); }
 function openEditProjectModalById(id) { const p = allProjects.find(x => x.idDemandas == id); if (!p) return; const form = document.getElementById('cadastro-projeto-form'); form.reset(); titulo.value = p.titulo || ''; descricao.value = (p.descricao || '').replace(/\n\nHabilidades Desejadas:.*/is, ''); objetivo.value = p.objetivo || ''; supervisor_responsavel.value = p.supervisor_responsavel || ''; form.dataset.editingId = id; document.getElementById('project-modal-title').textContent = 'Editar demanda'; openModal('project-modal'); }
-function openAdesaoModalById(id) { const p = allProjects.find(x => x.idDemandas == id); if (!p) return; adesao_form_reset(); adesao_project_id.value = id; adesao_project_name.value = p.titulo; openModal('adesao-modal'); fetchAdherence(id); }
-function openAndamentoModalById(id) { const p = allProjects.find(x => x.idDemandas == id); if (!p) return; document.getElementById('andamento-form').reset(); andamento_project_id.value = id; andamento_project_name.value = p.titulo; openModal('andamento-modal'); }
+function openAdesaoModalById(id) {
+    const p = allProjects.find(x => x.idDemandas == id);
+    if (!p) return;
+    adesao_form_reset();
+    document.getElementById('adesao-project-id').value = id;
+    document.getElementById('adesao-project-name').value = p.titulo;
+    openModal('adesao-modal');
+    fetchAdherence(id);
+}
+function openAndamentoModalById(id) {
+    const p = allProjects.find(x => x.idDemandas == id);
+    if (!p) return;
+    document.getElementById('andamento-form').reset();
+    document.getElementById('andamento-project-id').value = id;
+    document.getElementById('andamento-project-name').value = p.titulo;
+    openModal('andamento-modal');
+}
 function adesao_form_reset(){ document.getElementById('adesao-form').reset(); document.getElementById('additional-collaborators-container').innerHTML = ''; }
 
 async function fetchAdherence(id) {
@@ -1437,7 +1646,20 @@ function setupEvents() {
     document.getElementById('add-collaborator-btn').addEventListener('click', addCollaboratorField);
     document.getElementById('globalSearch').addEventListener('input', e => { searchTerm = e.target.value; renderAll(); });
     document.getElementById('notificationBtn').addEventListener('click', () => { notificationBtn.classList.toggle('has-alert'); showToast('Notificações visualizadas.'); });
-    document.getElementById('toggleNotifications').addEventListener('click', () => showToast('Preferência alterada.'));
+    document.getElementById('toggleNotifications').addEventListener('click', () => {
+        document.getElementById('notificationBtn').classList.toggle('has-alert');
+        showToast('Preferência de notificações alterada.');
+    });
+    document.getElementById('reloadData').addEventListener('click', () => {
+        loadProjects();
+        loadUsers();
+        showToast('Dados recarregados pela API.');
+    });
+    document.getElementById('focusMode').addEventListener('click', () => {
+        const workspace = document.querySelector('.workspace');
+        workspace.style.gridTemplateColumns = workspace.style.gridTemplateColumns === '1fr 0px' ? 'minmax(0, 1fr) 390px' : '1fr 0px';
+        document.querySelector('.details-panel').style.display = document.querySelector('.details-panel').style.display === 'none' ? 'flex' : 'none';
+        showToast('Modo foco alternado.');
     document.getElementById('clearAll').addEventListener('click', () => { searchTerm=''; boardFilter='all'; chipFilter=''; globalSearch.value=''; document.querySelectorAll('.chip,.workspace-tab').forEach(x=>x.classList.remove('active')); document.querySelector('[data-board-filter="all"]').classList.add('active'); renderAll(); });
 
     document.querySelectorAll('[data-view-target]').forEach(btn => btn.addEventListener('click', () => {
