@@ -1,175 +1,217 @@
 <!DOCTYPE html>
 <html lang="pt-BR">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>RUBY Alignment - Gestão de Demandas</title>
-    <script src="https://cdn.tailwindcss.com"></script>
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css">
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>Ruby Alignment</title>
+
+<link rel="icon" href="data:image/svg+xml,
+<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'>
+<rect width='100' height='100' rx='20' fill='black'/>
+<polygon points='50,10 90,35 75,85 25,85 10,35' fill='red'/>
+</svg>">
+
+<style>
+*{margin:0;padding:0;box-sizing:border-box}
+body{
+font-family:Inter,Arial;
+height:100vh;
+display:flex;
+align-items:center;
+justify-content:center;
+background:radial-gradient(circle at top,#120015,#000);
+color:#fff;
+overflow:hidden;
+}
+
+/* Glow Background */
+body::before{
+content:"";
+position:fixed;
+inset:0;
+background:
+radial-gradient(circle at 20% 20%,rgba(255,0,90,.2),transparent 30%),
+radial-gradient(circle at 80% 80%,rgba(255,120,0,.2),transparent 30%);
+animation:moveBg 10s infinite alternate;
+}
+@keyframes moveBg{
+from{transform:translate(0,0)}
+to{transform:translate(40px,20px)}
+}
+
+/* Container */
+.container{
+width:380px;
+padding:30px;
+border-radius:20px;
+background:rgba(255,255,255,.05);
+backdrop-filter:blur(20px);
+border:1px solid rgba(255,255,255,.1);
+box-shadow:0 20px 60px rgba(0,0,0,.5);
+animation:fadeIn .6s ease;
+}
+@keyframes fadeIn{
+from{opacity:0;transform:translateY(20px)}
+to{opacity:1}
+}
+
+.title{
+text-align:center;
+margin-bottom:25px;
+}
+.title h1{
+font-size:28px;
+background:linear-gradient(90deg,#fff,#ff4d6d);
+-webkit-background-clip:text;
+color:transparent;
+}
+.title p{
+font-size:13px;
+color:#aaa;
+}
+
+/* Inputs */
+.input{
+width:100%;
+margin-bottom:15px;
+padding:12px;
+border-radius:12px;
+border:1px solid rgba(255,255,255,.1);
+background:rgba(255,255,255,.05);
+color:#fff;
+outline:none;
+transition:.3s;
+}
+.input:focus{
+border-color:#ff005c;
+box-shadow:0 0 0 2px rgba(255,0,92,.2);
+}
+
+/* Button */
+button{
+width:100%;
+padding:12px;
+border-radius:12px;
+border:none;
+background:linear-gradient(135deg,#ff005c,#ff7a18);
+color:#fff;
+font-weight:bold;
+cursor:pointer;
+transition:.3s;
+}
+button:hover{
+transform:translateY(-2px);
+box-shadow:0 10px 30px rgba(255,0,92,.4);
+}
+
+/* Status */
+.status{
+margin-top:15px;
+font-size:13px;
+text-align:center;
+}
+
+/* System Status */
+.system{
+margin-top:20px;
+padding:12px;
+border-radius:12px;
+background:rgba(255,255,255,.05);
+font-size:12px;
+}
+
+/* Loader */
+.loader{
+border:3px solid transparent;
+border-top:3px solid #ff005c;
+border-radius:50%;
+width:16px;height:16px;
+display:inline-block;
+animation:spin 1s linear infinite;
+}
+@keyframes spin{to{transform:rotate(360deg)}}
+</style>
 </head>
-<body class="bg-gray-50 min-h-screen">
-    <div class="container mx-auto p-4">
-        <!-- Header -->
-        <header class="bg-white p-6 rounded-lg shadow-md mb-8 text-center">
-            <h1 class="text-3xl font-bold text-red-800">RUBY Alignment</h1>
-            <p class="text-gray-600 mt-2">Sistema de Gestão de Demandas</p>
-        </header>
 
-        <!-- Conteúdo Principal -->
-        <div class="max-w-md mx-auto bg-white p-8 rounded-lg shadow-md">
-            <h2 class="text-2xl font-bold mb-6 text-center">Acesso ao Sistema</h2>
-            
-            <form id="login-form">
-                <div class="mb-4">
-                    <label class="block text-gray-700 text-sm font-bold mb-2">Usuário</label>
-                    <input type="text" id="username" value="admin@ruby.com" 
-                           class="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-red-500">
-                </div>
-                
-                <div class="mb-6">
-                    <label class="block text-gray-700 text-sm font-bold mb-2">Senha</label>
-                    <input type="password" id="password" value="cah@123"
-                           class="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-red-500">
-                </div>
+<body>
 
-                <button type="submit" class="w-full bg-red-700 hover:bg-red-800 text-white font-bold py-3 px-4 rounded-md transition duration-200">
-                    Entrar no Sistema
-                </button>
-            </form>
+<div class="container">
 
-            <div id="login-result" class="mt-4 text-center"></div>
+<div class="title">
+<h1>Ruby Alignment</h1>
+<p>Gestão inteligente de demandas</p>
+</div>
 
-            <!-- Informações de Debug -->
-            <div class="mt-6 p-4 bg-gray-100 rounded-lg">
-                <h3 class="font-bold text-sm text-gray-700 mb-2">Status do Sistema:</h3>
-                <div id="system-status" class="text-sm">
-                    <p>Testando conexão com o backend...</p>
-                </div>
-            </div>
-        </div>
+<form id="login-form">
+<input id="username" class="input" value="admin@ruby.com">
+<input id="password" type="password" class="input" value="cah@123">
+<button type="submit">Entrar</button>
+</form>
 
-        <!-- Credenciais -->
-        <div class="max-w-md mx-auto mt-4 text-center text-sm text-gray-600">
-            <p>Use: <strong>admin@ruby.com</strong> / <strong>cah@123</strong></p>
-        </div>
-    </div>
+<div id="login-result" class="status"></div>
 
-    <script>
-        const BACKEND_URL = 'https://perfect-creativity-rubya.up.railway.app';
+<div class="system">
+<div id="system-status">Testando conexão...</div>
+</div>
 
-        // Testar conexão com o backend
-        async function testBackendConnection() {
-            const statusDiv = document.getElementById('system-status');
-            
-            try {
-                statusDiv.innerHTML = '<p class="text-yellow-600">🔄 Testando conexão...</p>';
-                
-                const response = await fetch(`${BACKEND_URL}/health`);
-                const result = await response.json();
-                
-                if (result.status === 'healthy') {
-                    statusDiv.innerHTML = `
-                        <p class="text-green-600">✅ Sistema Online</p>
-                        <p class="text-xs mt-1">Banco: ${result.database.database_name}</p>
-                        <p class="text-xs">MySQL: ${result.database.mysql_version}</p>
-                        <p class="text-xs">Ambiente: ${result.environment}</p>
-                    `;
-                    return true;
-                } else {
-                    statusDiv.innerHTML = `
-                        <p class="text-red-600">❌ Sistema com problemas</p>
-                        <p class="text-xs mt-1">Status: ${result.status}</p>
-                    `;
-                    return false;
-                }
-            } catch (error) {
-                statusDiv.innerHTML = `
-                    <p class="text-red-600">❌ Backend offline</p>
-                    <p class="text-xs mt-1">Erro: ${error.message}</p>
-                    <button onclick="testBackendConnection()" class="mt-2 text-blue-600 text-sm">
-                        Tentar novamente
-                    </button>
-                `;
-                return false;
-            }
-        }
+</div>
 
-        // Handler do formulário de login
-        document.getElementById('login-form').addEventListener('submit', async function(event) {
-            event.preventDefault();
-            
-            const username = document.getElementById('username').value;
-            const password = document.getElementById('password').value;
-            const resultDiv = document.getElementById('login-result');
-            
-            resultDiv.innerHTML = '<p class="text-yellow-600">🔄 Fazendo login...</p>';
-            
-            try {
-                const response = await fetch(`${BACKEND_URL}/login`, {
-                    method: 'POST',
-                    headers: {
-                        'Content-Type': 'application/json',
-                    },
-                    body: JSON.stringify({
-                        username: username,
-                        password: password
-                    }),
-                    credentials: 'include' // IMPORTANTE para cookies de sessão
-                });
+<script>
+const BACKEND_URL = 'https://perfect-creativity-rubya.up.railway.app';
 
-                const result = await response.json();
-                console.log('Resposta do login:', result); // Debug
+async function testBackendConnection(){
+const el=document.getElementById('system-status');
+el.innerHTML="🔄 Conectando...";
 
-                if (result.success) {
-                    if (result.first_login) {
-                        // Primeiro login - redirecionar para mudança de senha
-                        window.location.href = `${BACKEND_URL}/change-password-first`;
-                    } else {
-                        resultDiv.innerHTML = `
-                            <p class="text-green-600">✅ Login realizado com sucesso!</p>
-                            <p class="text-sm mt-2">Bem-vindo, ${result.user.name}!</p>
-                            <p class="text-xs text-gray-600">Perfil: ${result.user.role}</p>
-                            <button onclick="window.location.href='${BACKEND_URL}/dashboard'" class="mt-3 bg-green-600 text-white px-4 py-2 rounded-md">
-                                Ir para Dashboard
-                            </button>
-                        `;
-                    }
-                } else {
-                    resultDiv.innerHTML = `<p class="text-red-600">❌ ${result.error || 'Erro no login'}</p>`;
-                }
-            } catch (error) {
-                console.error('Erro no login:', error);
-                resultDiv.innerHTML = `
-                    <p class="text-red-600">❌ Erro de conexão</p>
-                    <p class="text-xs mt-1">${error.message}</p>
-                    <button onclick="testBackendConnection()" class="mt-2 text-blue-600 text-sm">
-                        Testar conexão novamente
-                    </button>
-                `;
-            }
-        });
+try{
+const r=await fetch(`${BACKEND_URL}/health`);
+const d=await r.json();
 
-        // Inicializar teste de conexão
-        document.addEventListener('DOMContentLoaded', function() {
-            testBackendConnection();
-            
-            // Auto-teste do sistema
-            setTimeout(async () => {
-                console.log('Testando todas as rotas...');
-                
-                // Teste de health
-                try {
-                    const health = await fetch(`${BACKEND_URL}/health`);
-                    console.log('Health:', await health.json());
-                } catch (e) { console.error('Health error:', e); }
-                
-                // Teste do banco
-                try {
-                    const db = await fetch(`${BACKEND_URL}/test-db`);
-                    console.log('DB Test:', await db.json());
-                } catch (e) { console.error('DB error:', e); }
-            }, 1000);
-        });
-    </script>
+if(d.status==='healthy'){
+el.innerHTML=`🟢 Sistema Online`;
+}else{
+el.innerHTML=`🟠 Instável`;
+}
+}catch(e){
+el.innerHTML=`🔴 Offline`;
+}
+}
+
+document.getElementById('login-form').addEventListener('submit',async e=>{
+e.preventDefault();
+
+const user=username.value;
+const pass=password.value;
+const result=document.getElementById('login-result');
+
+result.innerHTML='<span class="loader"></span> Entrando...';
+
+try{
+const r=await fetch(`${BACKEND_URL}/login`,{
+method:'POST',
+headers:{'Content-Type':'application/json'},
+body:JSON.stringify({username:user,password:pass}),
+credentials:'include'
+});
+
+const d=await r.json();
+
+if(d.success){
+result.innerHTML=`✅ Bem-vindo ${d.user.name}`;
+setTimeout(()=>{
+window.location.href=`${BACKEND_URL}/dashboard`;
+},1000);
+}else{
+result.innerHTML=`❌ ${d.error}`;
+}
+}catch(err){
+result.innerHTML=`❌ Erro conexão`;
+}
+});
+
+document.addEventListener('DOMContentLoaded',testBackendConnection);
+</script>
+
 </body>
 </html>
