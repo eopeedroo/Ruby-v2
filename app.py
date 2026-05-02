@@ -17,10 +17,10 @@ app = Flask(__name__, template_folder='templates')
 
 app.secret_key = os.environ.get('SECRET_KEY', 'ruby_alignment_kanban_secret_key_2024')
 
-app.config['MYSQL_HOST'] = os.environ.get('MYSQL_HOST', 'tramway.proxy.rlwy.net')
-app.config['MYSQL_PORT'] = int(os.environ.get('MYSQL_PORT', 32398))
+app.config['MYSQL_HOST'] = os.environ.get('MYSQL_HOST', 'caboose.proxy.rlwy.net')
+app.config['MYSQL_PORT'] = int(os.environ.get('MYSQL_PORT', 27053))
 app.config['MYSQL_USER'] = os.environ.get('MYSQL_USER', 'root')
-app.config['MYSQL_PASSWORD'] = os.environ.get('MYSQL_PASSWORD', 'klDcQCKoOcXslFUDbCrWqZMYtThLvtEf')
+app.config['MYSQL_PASSWORD'] = os.environ.get('MYSQL_PASSWORD', 'hfziFkZcOmQaABJIEwwteqbmamWpHnsC')
 app.config['MYSQL_DB'] = os.environ.get('MYSQL_DB', 'railway')
 app.config['MYSQL_CURSORCLASS'] = 'DictCursor'
 app.config['MYSQL_SSL'] = {'ssl': {}}
